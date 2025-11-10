@@ -841,7 +841,7 @@
         "sets": [
             {
                 "role": "Setup Sweeper",
-                "movepool": ["Dragon Dance", "Earthquake", "Protect", "Stone Edge", "Temper Flare", "Waterfall"],
+                "movepool": ["Dragon Dance", "Earthquake", "Protect", "Waterfall"],
                 "abilities": ["Intimidate"],
                 "teraTypes": ["Ground"]
             },
