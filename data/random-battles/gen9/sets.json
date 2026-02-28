@@ -7505,7 +7505,7 @@
         "level": 65,
         "sets": [
             {
-                "role": "Fast Bulky Setup",
+                "role": "Setup Sweeper",
                 "movepool": ["Calm Mind", "Draco Meteor", "Dragon Pulse", "Electro Drift"],
                 "abilities": ["Hadron Engine"],
                 "teraTypes": ["Electric"]

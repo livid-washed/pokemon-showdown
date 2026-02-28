@@ -458,7 +458,7 @@
         "level": 83,
         "sets": [
             {
-                "role": "Bulky Support",
+                "role": "Bulky Attacker",
                 "movepool": ["fireblast", "icebeam", "psyshock", "scald", "slackoff", "thunderwave", "toxic"],
                 "abilities": ["Regenerator"],
                 "preferredTypes": ["Psychic"]
@@ -1269,7 +1269,7 @@
         "level": 83,
         "sets": [
             {
-                "role": "Bulky Support",
+                "role": "Bulky Attacker",
                 "movepool": ["fireblast", "icebeam", "psyshock", "scald", "slackoff", "thunderwave", "toxic"],
                 "abilities": ["Regenerator"],
                 "preferredTypes": ["Psychic"]
@@ -3309,7 +3309,7 @@
         "sets": [
             {
                 "role": "Bulky Attacker",
-                "movepool": ["earthquake", "gigadrain", "hiddenpowerfire", "leechseed", "morningsun", "powerwhip", "rockslide", "sleeppowder"],
+                "movepool": ["earthquake", "gigadrain", "hiddenpowerfire", "leafstorm", "leechseed", "morningsun", "rockslide", "sleeppowder"],
                 "abilities": ["Regenerator"]
             },
             {
@@ -4010,7 +4010,7 @@
         "level": 86,
         "sets": [
             {
-                "role": "Fast Attacker",
+                "role": "Wallbreaker",
                 "movepool": ["aquajet", "grassknot", "hydropump", "icebeam", "megahorn", "superpower"],
                 "abilities": ["Torrent"]
             },

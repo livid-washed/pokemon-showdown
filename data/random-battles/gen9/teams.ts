@@ -1292,7 +1292,7 @@ export class RandomTeams {
 		) return 'Leftovers';
 		if (moves.has('hypervoice') && !types.includes('Normal')) return 'Throat Spray';
 		if (
-			role === 'Fast Attacker' && !counter.get('recoil') &&
+			role === 'Doubles Fast Attacker' && !counter.get('recoil') &&
 			species.baseStats.hp + species.baseStats.def + species.baseStats.spd <= 230
 		) return 'Focus Sash';
 		if (
