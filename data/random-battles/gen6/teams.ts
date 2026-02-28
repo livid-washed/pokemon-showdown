@@ -260,7 +260,7 @@ export class RandomGen6Teams extends RandomGen7Teams {
 			this.incompatibleMoves(moves, movePool, 'knockoff', ['pursuit', 'suckerpunch']);
 		}
 
-		const statusInflictingMoves = ['thunderwave', 'toxic', 'willowisp', 'yawn'];
+		const statusInflictingMoves = ["nuzzle", 'thunderwave', 'toxic', 'willowisp', 'yawn'];
 		if (!abilities.includes('Prankster') && role !== 'Staller') {
 			this.incompatibleMoves(moves, movePool, statusInflictingMoves, statusInflictingMoves);
 		}

@@ -246,7 +246,9 @@ export class RandomTeams {
 				!counter.get('Steel') &&
 				(isDoubles || species.baseStats.atk >= 90 || movePool.includes('gigatonhammer') || movePool.includes('makeitrain'))
 			),
-			Water: (movePool, moves, abilities, types, counter) => (!counter.get('Water') && !types.includes('Ground')),
+			Water: (movePool, moves, abilities, types, counter, species, teamDetails, isLead, isDoubles) => (
+				!counter.get('Water') && (!types.includes('Ground') || isDoubles)
+			),
 		};
 		this.poolsCacheKey = undefined;
 		this.cachedPool = undefined;
@@ -1157,8 +1159,8 @@ export class RandomTeams {
 			}
 			return this.sample(species.requiredItems);
 		}
-		if (role === 'AV Pivot') return 'Assault Vest';
 		if (species.id === 'pikachu') return 'Light Ball';
+		if (role === 'AV Pivot') return 'Assault Vest';
 		if (species.id === 'regieleki') return 'Magnet';
 		if (types.includes('Normal') && moves.has('doubleedge') && moves.has('fakeout')) return 'Silk Scarf';
 		if (
@@ -1285,9 +1287,14 @@ export class RandomTeams {
 			(role === 'Bulky Protect' && counter.get('setup')) ||
 			['irondefense', 'coil', 'acidarmor', 'wish'].some(m => moves.has(m)) ||
 			(counter.get('recovery') && !moves.has('strengthsap') && !counter.get('speedcontrol') && !offensiveRole) ||
+			(PROTECT_MOVES.some(m => moves.has(m)) && moves.has('leechseed')) ||
 			species.id === 'regigigas'
 		) return 'Leftovers';
-		if (species.id === 'sylveon') return 'Pixie Plate';
+		if (moves.has('hypervoice') && !types.includes('Normal')) return 'Throat Spray';
+		if (
+			role === 'Fast Attacker' && !counter.get('recoil') &&
+			species.baseStats.hp + species.baseStats.def + species.baseStats.spd <= 230
+		) return 'Focus Sash';
 		if (
 			(offensiveRole || (role === 'Tera Blast user' && (species.baseStats.spe >= 80 || moves.has('trickroom')))) &&
 			!moves.has('fakeout') &&
@@ -1300,7 +1307,7 @@ export class RandomTeams {
 			) ? 'Booster Energy' : 'Life Orb';
 		}
 		if (isLead && (species.id === 'glimmora' ||
-			(['Doubles Fast Attacker', 'Doubles Wallbreaker', 'Offensive Protect'].includes(role) &&
+			(['Doubles Wallbreaker', 'Offensive Protect'].includes(role) &&
 				species.baseStats.hp + species.baseStats.def + species.baseStats.spd <= 230))
 		) return 'Focus Sash';
 		if (

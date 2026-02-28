@@ -210,7 +210,7 @@ export class RandomGen4Teams extends RandomGen5Teams {
 
 		for (const pair of incompatiblePairs) this.incompatibleMoves(moves, movePool, pair[0], pair[1]);
 
-		const statusInflictingMoves = ['stunspore', 'thunderwave', 'toxic', 'willowisp', 'yawn'];
+		const statusInflictingMoves = ['hypnosis', 'stunspore', 'thunderwave', 'toxic', 'willowisp', 'yawn'];
 		if (role !== 'Staller') {
 			this.incompatibleMoves(moves, movePool, statusInflictingMoves, statusInflictingMoves);
 		}
