@@ -850,7 +850,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 		species: Species,
 		pokemon: RandomTeamsTypes.RandomSet[],
 	): boolean {
-		const incompatiblePokemon = [
+		const incompatibilityList = [
 			// These Pokemon with support roles are considered too similar to each other.
 			['blissey', 'chansey'],
 			['illumise', 'volbeat'],
@@ -862,7 +862,6 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			['shedinja', ['tyranitar', 'hippowdon', 'abomasnow']],
 		];
 
-		const incompatibilityList = incompatiblePokemon;
 		for (const pair of incompatibilityList) {
 			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
 			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];

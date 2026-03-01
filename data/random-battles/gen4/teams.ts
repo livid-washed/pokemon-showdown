@@ -786,7 +786,7 @@ export class RandomGen4Teams extends RandomGen5Teams {
 		species: Species,
 		pokemon: RandomTeamsTypes.RandomSet[],
 	): boolean {
-		const incompatiblePokemon = [
+		const incompatibilityList = [
 			// These Pokemon are incompatible because the presence of one actively harms the other.
 			// Prevent Dry Skin + sun setting ability
 			[['parasect', 'toxicroak'], 'groudon'],
@@ -794,7 +794,6 @@ export class RandomGen4Teams extends RandomGen5Teams {
 			['shedinja', ['tyranitar', 'hippowdon', 'abomasnow']],
 		];
 
-		const incompatibilityList = incompatiblePokemon;
 		for (const pair of incompatibilityList) {
 			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
 			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];

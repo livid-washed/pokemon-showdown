@@ -495,12 +495,11 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		pokemon: RandomTeamsTypes.RandomSet[],
 	): boolean {
 		const spikesSetters = ['cloyster', 'delibird', 'qwilfish', 'forretress', 'smeargle'];
-		const incompatiblePokemon = [
+		const incompatibilityList = [
 			// These combinations are prevented to avoid double spikes.
 			[spikesSetters, spikesSetters],
 		];
 
-		const incompatibilityList = incompatiblePokemon;
 		for (const pair of incompatibilityList) {
 			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
 			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];

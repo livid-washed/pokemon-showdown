@@ -638,7 +638,7 @@ export class RandomGen3Teams extends RandomGen4Teams {
 		species: Species,
 		pokemon: RandomTeamsTypes.RandomSet[],
 	): boolean {
-		const incompatiblePokemon = [
+		const incompatibilityList = [
 			// These Pokemon are incompatible because the presence of one actively harms the other.
 			// Prevent Shedinja + Tyranitar
 			['shedinja', 'tyranitar'],
@@ -646,7 +646,6 @@ export class RandomGen3Teams extends RandomGen4Teams {
 			[['dodrio', 'raticate', 'primeape', 'hitmonlee', 'furret', 'yanma', 'heracross', 'blaziken', 'medicham'], 'tyranitar'],
 		];
 
-		const incompatibilityList = incompatiblePokemon;
 		for (const pair of incompatibilityList) {
 			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
 			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];

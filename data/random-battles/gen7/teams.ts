@@ -1209,7 +1209,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		const gen6HailSetters = ['abomasnow', 'abomasnowmega', 'aurorus'];
 		const hailSetters = (this.gen === 7) ? [...gen6HailSetters, 'vanilluxe', 'ninetalesalola'] : gen6HailSetters;
 
-		const incompatiblePokemon = [
+		const incompatibilityList = [
 			// These Pokemon with support roles are considered too similar to each other.
 			['blissey', 'chansey'],
 			['illumise', 'volbeat'],
@@ -1225,7 +1225,6 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			['shedinja', [...sandSetters, ...hailSetters]],
 		];
 
-		const incompatibilityList = incompatiblePokemon;
 		for (const pair of incompatibilityList) {
 			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
 			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];
