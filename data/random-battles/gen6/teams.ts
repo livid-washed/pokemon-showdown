@@ -883,6 +883,7 @@ export class RandomGen6Teams extends RandomGen7Teams {
 		return {
 			name: species.baseSpecies,
 			species: forme,
+			speciesId: species.id,
 			gender: species.gender || (this.random(2) ? 'F' : 'M'),
 			shiny: this.randomChance(1, 1024),
 			level,

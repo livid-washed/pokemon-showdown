@@ -4678,7 +4678,7 @@
         "sets": [
             {
                 "role": "Bulky Protect",
-                "movepool": ["Bug Buzz", "Electroweb", "Protect", "Sticky Web", "Thunderbolt"],
+                "movepool": ["Bug Buzz", "Protect", "Sticky Web", "Thunderbolt"],
                 "abilities": ["Levitate"],
                 "teraTypes": ["Electric"]
             }

@@ -185,7 +185,7 @@
             },
             {
                 "role": "Fast Attacker",
-                "movepool": ["Aurora Veil", "Blizzard", "Freeze-Dry", "Moonblast", "Nasty Plot"],
+                "movepool": ["Aurora Veil", "Blizzard", "Freeze-Dry", "Moonblast"],
                 "abilities": ["Snow Warning"],
                 "teraTypes": ["Steel", "Water"]
             }
@@ -2712,7 +2712,7 @@
         "sets": [
             {
                 "role": "Fast Support",
-                "movepool": ["Knock Off", "Pounce", "Sticky Web", "Swords Dance", "Taunt"],
+                "movepool": ["Knock Off", "Pounce", "Sticky Web", "Taunt"],
                 "abilities": ["Technician"],
                 "teraTypes": ["Ghost"]
             }
@@ -4018,13 +4018,13 @@
         "sets": [
             {
                 "role": "Fast Support",
-                "movepool": ["Knock Off", "Leaf Blade", "Lunge", "Sticky Web", "Swords Dance"],
+                "movepool": ["Knock Off", "Leaf Blade", "Lunge", "Sticky Web"],
                 "abilities": ["Chlorophyll", "Swarm"],
                 "teraTypes": ["Ghost", "Rock"]
             },
             {
                 "role": "Fast Attacker",
-                "movepool": ["Bullet Seed", "Knock Off", "Sticky Web", "Swords Dance", "Triple Axel"],
+                "movepool": ["Bullet Seed", "Knock Off", "Sticky Web", "Triple Axel"],
                 "abilities": ["Chlorophyll"],
                 "teraTypes": ["Ghost", "Rock"]
             }

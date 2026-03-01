@@ -146,7 +146,7 @@ const DOUBLES_NO_LEAD_POKEMON = [
 ];
 
 const DEFENSIVE_TERA_BLAST_USERS = [
-	'alcremie', 'bellossom', 'comfey', 'fezandipiti', 'florges', 'raikou',
+	'alcremie', 'bellossom', 'comfey', 'fezandipiti', 'florges',
 ];
 
 function sereneGraceBenefits(move: Move) {
@@ -1589,6 +1589,7 @@ export class RandomTeams {
 		return {
 			name: species.baseSpecies,
 			species: forme,
+			speciesId: species.id,
 			gender: species.baseSpecies === 'Greninja' ? 'M' : (species.gender || (this.random(2) ? 'F' : 'M')),
 			shiny: this.randomChance(1, 1024),
 			level,
@@ -1635,6 +1636,79 @@ export class RandomTeams {
 			for (let i = 0; i < weight; i++) baseSpeciesPool.push(baseSpecies);
 		}
 		return [pokemonPool, baseSpeciesPool];
+	}
+
+	/**
+	 * Checks if the new species is compatible with the other mons currently on the team.
+	 */
+	getPokemonCompatibility(
+		species: Species,
+		pokemon: RandomTeamsTypes.RandomSet[],
+		isDoubles = false
+	): boolean {
+		const webSetters = [
+			'ariados', 'smeargle', 'masquerain', 'kricketune', 'leavanny', 'galvantula', 'vikavolt', 'ribombee', 'araquanid', 'spidops',
+		];
+		const screenSetters = ['meowstic', 'grimmsnarl', 'ninetalesalola', 'abomasnow'];
+
+		const doublesWebSetters = ['ariados', 'kricketune', 'leavanny', 'galvantula', 'vikavolt', 'araquanid', 'spidops'];
+		const doublesScreenSetters = ['meowstic', 'klefki', 'grimmsnarl', 'ninetalesalola', 'abomasnow'];
+
+		const sunSetters = ['ninetales', 'torkoal', 'groudon', 'koraidon'];
+		const rainSetters = ['politoed', 'pelipper', 'kyogre'];
+		const sandSetters = ['tyranitar', 'hippowdon'];
+		const snowSetters = ['ninetalesalola', 'abomasnow'];
+
+		const incompatiblePokemon = [
+			// These Pokemon with support roles are considered too similar to each other.
+			['blissey', 'chansey'],
+			['illumise', 'volbeat'],
+
+			// These combinations are prevented to avoid double webs or screens.
+			[webSetters, webSetters],
+			[screenSetters, screenSetters],
+
+			// These Pokemon are incompatible because the presence of one actively harms the other.
+			// Prevent Dry Skin + sun setting ability
+			['toxicroak', sunSetters],
+		];
+
+		const doublesIncompatiblePokemon = [
+			// These Pokemon with support roles are considered too similar to each other.
+			['illumise', 'volbeat'],
+			[['minun', 'plusle', 'pachirisu', 'raichu'], ['minun', 'plusle', 'pachirisu', 'raichu']],
+
+			// These combinations are prevented to avoid double webs or screens.
+			[doublesWebSetters, doublesWebSetters],
+			[doublesScreenSetters, doublesScreenSetters],
+
+			// These Pokemon are incompatible because the presence of one actively harms the other.
+			// Prevent Dry Skin + sun setting ability
+			['toxicroak', sunSetters],
+
+			// Prevent conflicting weather abilities from generating together
+			[sunSetters, [...rainSetters, ...sandSetters, ...snowSetters]],
+			[rainSetters, [...sandSetters, ...snowSetters]],
+			[sandSetters, snowSetters],
+
+			// Prevent conflicting terrain abilities from generating together
+			[['pincurchin', 'miraidon'], ['indeedee', 'indeedeef', 'rillaboom']],
+			['rillaboom', ['indeedee', 'indeedeef']],
+		];
+
+		const incompatibilityList = isDoubles ? doublesIncompatiblePokemon : incompatiblePokemon;
+		for (const pair of incompatibilityList) {
+			const monsArrayA = (Array.isArray(pair[0])) ? pair[0] : [pair[0]];
+			const monsArrayB = (Array.isArray(pair[1])) ? pair[1] : [pair[1]];
+			if (monsArrayB.includes(species.id)) {
+				if (pokemon.some(m => monsArrayA.includes(m.speciesId!))) return false;
+			}
+			if (monsArrayA.includes(species.id)) {
+				if (pokemon.some(m => monsArrayB.includes(m.speciesId!))) return false;
+			}
+		}
+
+		return true;
 	}
 
 	randomSets: { [species: string]: RandomTeamsTypes.RandomSpeciesData } = require('./sets.json');
@@ -1744,6 +1818,9 @@ export class RandomTeams {
 				if (!this.adjustLevel && (this.getLevel(species, isDoubles) === 100) && numMaxLevelPokemon >= limitFactor) {
 					continue;
 				}
+
+				// Check compatibility with team
+				if (!this.getPokemonCompatibility(species, pokemon, isDoubles)) continue;
 			}
 
 			// Limit three of any type combination in Monotype
