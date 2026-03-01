@@ -6666,6 +6666,11 @@
                 "role": "Bulky Attacker",
                 "movepool": ["hydropump", "moonblast", "psychic", "scald"],
                 "abilities": ["Torrent"]
+            },
+            {
+                "role": "Bulky Support",
+                "movepool": ["moonblast", "rest", "scald", "sleeptalk"],
+                "abilities": ["Torrent"]
             }
         ]
     },
