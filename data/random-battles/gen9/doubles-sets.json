@@ -5927,7 +5927,7 @@
                 "role": "Doubles Wallbreaker",
                 "movepool": ["Body Slam", "Double-Edge", "High Horsepower", "Lash Out"],
                 "abilities": ["Thick Fat"],
-                "teraTypes": ["Ground", "Normal"]
+                "teraTypes": ["Ghost", "Ground", "Normal"]
             }
         ]
     },
@@ -5944,7 +5944,7 @@
                 "role": "Doubles Wallbreaker",
                 "movepool": ["Body Slam", "Double-Edge", "High Horsepower", "Lash Out"],
                 "abilities": ["Thick Fat"],
-                "teraTypes": ["Ground", "Normal"]
+                "teraTypes": ["Ghost", "Ground", "Normal"]
             }
         ]
     },
