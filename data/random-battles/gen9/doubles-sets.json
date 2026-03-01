@@ -1487,7 +1487,7 @@
                 "teraTypes": ["Ghost"]
             },
             {
-                "role": "Doubles Support",
+                "role": "Doubles Fast Attacker",
                 "movepool": ["Decorate", "Fake Out", "Follow Me", "Tailwind"],
                 "abilities": ["Technician"],
                 "teraTypes": ["Ghost"]
