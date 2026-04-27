@@ -1,6 +1,6 @@
 import RandomGen3Teams from '../gen3/teams';
 import type { PRNG, PRNGSeed } from '../../../sim/prng';
-import type { MoveCounter } from '../gen8/teams';
+import type { MoveCounter } from '../gen9/teams';
 
 // Moves that restore HP:
 const RECOVERY_MOVES = [
@@ -48,7 +48,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 	}
 
 	override cullMovePool(
-		types: string[],
+		types: Set<string>,
 		moves: Set<string>,
 		abilities = {},
 		counter: MoveCounter,
@@ -139,7 +139,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 
 	// Generate random moveset for a given species, role, preferred type.
 	override randomMoveset(
-		types: string[],
+		types: Set<string>,
 		abilities: string[],
 		teamDetails: RandomTeamsTypes.TeamDetails,
 		species: Species,
@@ -150,7 +150,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 	): Set<string> {
 		const preferredTypes = preferredType ? preferredType.split(',') : [];
 		const moves = new Set<string>();
-		let counter = this.newQueryMoves(moves, species, preferredType, abilities);
+		let counter = this.queryMoves(moves, species, preferredType, abilities);
 		this.cullMovePool(types, moves, abilities, counter, movePool, teamDetails, species, isLead,
 			preferredType, role);
 
@@ -159,7 +159,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			// Still need to ensure that multiple Hidden Powers are not added (if maxMoveCount is increased)
 			while (movePool.length) {
 				const moveid = this.sample(movePool);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 			return moves;
@@ -168,14 +168,14 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		const runEnforcementChecker = (checkerName: string) => {
 			if (!this.moveEnforcementCheckers[checkerName]) return false;
 			return this.moveEnforcementCheckers[checkerName](
-				movePool, moves, abilities, new Set(types), counter, species, teamDetails
+				movePool, moves, abilities, types, counter, species, teamDetails, isLead, false, preferredType, role
 			);
 		};
 
 		// Add required move (e.g. Relic Song for Meloetta-P)
 		if (species.requiredMove) {
 			const move = this.dex.moves.get(species.requiredMove).id;
-			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead,
+			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead, false,
 				movePool, preferredType, role);
 		}
 
@@ -184,14 +184,14 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		// Enforce Destiny Bond, Explosion, Present, Spikes and Spore
 		for (const moveid of ['destinybond', 'explosion', 'present', 'spikes', 'spore']) {
 			if (movePool.includes(moveid)) {
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
 
 		// Enforce Baton Pass on Smeargle
 		if (movePool.includes('batonpass') && species.id === 'smeargle') {
-			counter = this.addMove('batonpass', moves, types, abilities, teamDetails, species, isLead,
+			counter = this.addMove('batonpass', moves, types, abilities, teamDetails, species, isLead, false,
 				movePool, preferredType, role);
 		}
 
@@ -208,7 +208,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 				}
 				if (stabMoves.length) {
 					const moveid = this.sample(stabMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 						movePool, preferredType, role);
 				}
 			}
@@ -228,7 +228,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			while (runEnforcementChecker(type)) {
 				if (!stabMoves.length) break;
 				const moveid = this.sampleNoReplace(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
@@ -239,13 +239,13 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
 				const moveType = this.getMoveType(move, species, abilities, preferredType);
-				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback) && types.includes(moveType)) {
+				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback) && types.has(moveType)) {
 					stabMoves.push(moveid);
 				}
 			}
 			if (stabMoves.length) {
 				const moveid = this.sample(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
@@ -255,16 +255,16 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			const recoveryMoves = movePool.filter(moveid => RECOVERY_MOVES.includes(moveid));
 			if (recoveryMoves.length) {
 				const moveid = this.sample(recoveryMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 			// Rest/Sleep Talk count as recovery in Gen 2
 			if (movePool.includes('rest')) {
-				counter = this.addMove('rest', moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove('rest', moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 			if (movePool.includes('sleeptalk')) {
-				counter = this.addMove('sleeptalk', moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove('sleeptalk', moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
@@ -275,11 +275,11 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			const nonSpeedSetupMoves = movePool.filter(moveid => SETUP.includes(moveid) && moveid !== 'agility');
 			if (nonSpeedSetupMoves.length) {
 				const moveid = this.sample(nonSpeedSetupMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			} else {
 				if (movePool.includes('agility')) {
-					counter = this.addMove('agility', moves, types, abilities, teamDetails, species, isLead,
+					counter = this.addMove('agility', moves, types, abilities, teamDetails, species, isLead, false,
 						movePool, preferredType, role);
 				}
 			}
@@ -288,7 +288,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		// Enforce Thief
 		if (role === 'Thief user') {
 			if (movePool.includes('thief')) {
-				counter = this.addMove('thief', moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove('thief', moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
@@ -303,7 +303,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 			}
 			if (attackingMoves.length) {
 				const moveid = this.sample(attackingMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 					movePool, preferredType, role);
 			}
 		}
@@ -324,7 +324,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 				}
 				if (coverageMoves.length) {
 					const moveid = this.sample(coverageMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 						movePool, preferredType, role);
 				}
 			}
@@ -333,15 +333,15 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		// Choose remaining moves randomly from movepool and add them to moves list:
 		while (moves.size < this.maxMoveCount && movePool.length) {
 			const moveid = this.sample(movePool);
-			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
 				movePool, preferredType, role);
 			for (const pair of MOVE_PAIRS) {
 				if (moveid === pair[0] && movePool.includes(pair[1])) {
-					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead,
+					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead, false,
 						movePool, preferredType, role);
 				}
 				if (moveid === pair[1] && movePool.includes(pair[0])) {
-					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead,
+					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead, false,
 						movePool, preferredType, role);
 				}
 			}
@@ -351,7 +351,7 @@ export class RandomGen2Teams extends RandomGen3Teams {
 
 	override getItem(
 		ability: string,
-		types: string[],
+		types: Set<string>,
 		moves: Set<string>,
 		counter: MoveCounter,
 		teamDetails: RandomTeamsTypes.TeamDetails,
@@ -400,13 +400,13 @@ export class RandomGen2Teams extends RandomGen3Teams {
 		const evs = { hp: 255, atk: 255, def: 255, spa: 255, spd: 255, spe: 255 };
 		const ivs = { hp: 30, atk: 30, def: 30, spa: 30, spd: 30, spe: 30 };
 
-		const types = species.types;
+		const types = new Set(species.types);
 		const abilities: string[] = [];
 
 		// Get moves
 		const moves = this.randomMoveset(types, abilities, teamDetails, species, isLead, movePool,
 			preferredType, role);
-		const counter = this.newQueryMoves(moves, species, preferredType, abilities);
+		const counter = this.queryMoves(moves, species, preferredType, abilities);
 
 		// Get items
 		item = this.getItem(ability, types, moves, counter, teamDetails, species, isLead, preferredType, role);
