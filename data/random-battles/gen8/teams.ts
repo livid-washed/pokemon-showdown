@@ -675,7 +675,7 @@ export class RandomGen8Teams extends RandomTeams {
 		if (ability === 'Unburden') return moves.has('closecombat') ? 'White Herb' : 'Sitrus Berry';
 		if (moves.has('acrobatics')) return '';
 		if (moves.has('auroraveil') || moves.has('lightscreen') && moves.has('reflect')) return 'Light Clay';
-		if (this.dex.getEffectiveness('Rock', species) >= 2) return 'Heavy-Duty Boots';
+		if (this.dex.getEffectiveness('Rock', species) >= 2 || ability === 'Multiscale') return 'Heavy-Duty Boots';
 		if (species.nfe) return 'Eviolite';
 		if (moves.has('rest') && !moves.has('sleeptalk') && !['Natural Cure', 'Shed Skin'].includes(ability)) {
 			return 'Chesto Berry';
@@ -722,7 +722,7 @@ export class RandomGen8Teams extends RandomTeams {
 			return (scarfReqs && this.randomChance(1, 2)) ? 'Choice Scarf' : 'Choice Specs';
 		}
 
-		if (role === 'Bulky Setup' && !!counter.get('speedsetup') && counter.get('Status') === 1) {
+		if (role === 'Bulky Setup' && !!counter.get('speedsetup') && counter.get('Status') <= 1) {
 			return 'Weakness Policy';
 		}
 		if (!counter.get('Status') && (
