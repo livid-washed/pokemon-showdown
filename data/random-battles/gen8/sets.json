@@ -4494,7 +4494,7 @@
         "sets": [
             {
                 "role": "Fast Support",
-                "movepool": ["Defog", "Ice Beam", "Multi-Attack", "Parting Shot", "Surf", "Thunder Wave", "Thunderbolt", "Toxic"],
+                "movepool": ["Defog", "Grass Pledge", "Ice Beam", "Multi-Attack", "Parting Shot", "Surf", "Thunder Wave", "Toxic"],
                 "abilities": ["RKS System"]
             }
         ]
@@ -4513,12 +4513,12 @@
         "level": 83,
         "sets": [
             {
-                "role": "Setup Sweeper",
+                "role": "Bulky Setup",
                 "movepool": ["Explosion", "Multi-Attack", "Swords Dance", "U-turn"],
                 "abilities": ["RKS System"]
             },
             {
-                "role": "Bulky Setup",
+                "role": "Setup Sweeper",
                 "movepool": ["Explosion", "Flame Charge", "Multi-Attack", "Swords Dance", "X-Scissor"],
                 "abilities": ["RKS System"]
             }
