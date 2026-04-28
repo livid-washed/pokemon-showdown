@@ -2854,7 +2854,7 @@
             },
             {
                 "role": "Bulky Support",
-                "movepool": ["Bulk Up", "Circle Throw", "Knock Off", "Rest", "Sleep Talk"],
+                "movepool": ["Circle Throw", "Knock Off", "Rest", "Sleep Talk"],
                 "abilities": ["Guts"]
             }
         ]

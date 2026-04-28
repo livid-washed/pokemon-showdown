@@ -1649,9 +1649,9 @@ export class RandomBDSPTeams {
 				}
 
 				// Limit one level 100 Pokemon
-				if (
-					!this.adjustLevel && numMaxLevelPokemon >= limitFactor && this.getLevel(species)
-				) continue;
+				if (!this.adjustLevel && (this.getLevel(species) === 100) && numMaxLevelPokemon >= limitFactor) {
+					continue;
+				}
 			}
 
 			// Limit three of any type combination in Monotype
