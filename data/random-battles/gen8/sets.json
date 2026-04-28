@@ -2061,7 +2061,7 @@
             {
                 "role": "Fast Attacker",
                 "movepool": ["Dragon Ascent", "Earthquake", "Extreme Speed", "Swords Dance", "V-create"],
-                "abilities": [""]
+                "abilities": ["Air Lock"]
             }
         ]
     },
@@ -2474,7 +2474,7 @@
         "level": 85,
         "sets": [
             {
-                "role": "Fast Support",
+                "role": "Bulky Attacker",
                 "movepool": ["Defog", "Nasty Plot", "Shadow Ball", "Thunderbolt", "Volt Switch", "Will-O-Wisp"],
                 "abilities": ["Levitate"]
             }
@@ -2954,7 +2954,7 @@
                 "abilities": ["Storm Drain", "Water Absorb"]
             },
             {
-                "role": "Fast Support",
+                "role": "Bulky Support",
                 "movepool": ["Giga Drain", "Knock Off", "Spikes", "Synthesis", "Toxic"],
                 "abilities": ["Storm Drain", "Water Absorb"]
             }
@@ -5638,7 +5638,7 @@
                 "role": "Bulky Attacker",
                 "movepool": ["Body Press", "Draco Meteor", "Flash Cannon", "Iron Defense", "Stealth Rock", "Thunder Wave", "Thunderbolt"],
                 "abilities": ["Light Metal"],
-                "preferredTypes": ["Fighting"]
+                "preferredTypes": ["Steel"]
             }
         ]
     },

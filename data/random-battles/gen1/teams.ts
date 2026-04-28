@@ -220,8 +220,6 @@ export class RandomGen1Teams extends RandomGen2Teams {
 		species: Species,
 	): number {
 		if (this.adjustLevel) return this.adjustLevel;
-		console.log(species.id);
-		console.log(this.randomData[species.id]["level"]);
 		if (this.randomData[species.id]["level"]) return this.randomData[species.id]["level"]!;
 		// Default to 80
 		return 80;

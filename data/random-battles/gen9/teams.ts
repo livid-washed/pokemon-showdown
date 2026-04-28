@@ -1413,7 +1413,7 @@ export class RandomTeams {
 
 	getLevel(
 		species: Species,
-		isDoubles: boolean = false,
+		isDoubles = false,
 	): number {
 		if (this.adjustLevel) return this.adjustLevel;
 		// doubles levelling

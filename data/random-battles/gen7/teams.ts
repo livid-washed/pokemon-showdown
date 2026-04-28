@@ -1,4 +1,4 @@
-import { MoveCounter, type TeamData } from '../gen9/teams';
+import { type MoveCounter, type TeamData } from '../gen9/teams';
 import { RandomGen8Teams } from '../gen8/teams';
 import type { PRNG, PRNGSeed } from '../../../sim/prng';
 import { toID } from '../../../sim/dex';
@@ -33,10 +33,6 @@ export const ZeroAttackHPIVs: { [k: string]: SparseStatsTable } = {
 const RECOVERY_MOVES = [
 	'healorder', 'milkdrink', 'moonlight', 'morningsun', 'recover', 'recycle', 'roost', 'shoreup', 'slackoff', 'softboiled', 'strengthsap', 'synthesis',
 ];
-// Moves that drop stats:
-const CONTRARY_MOVES = [
-	'closecombat', 'leafstorm', 'overheat', 'superpower', 'vcreate',
-];
 // Moves that boost Attack:
 const PHYSICAL_SETUP = [
 	'bellydrum', 'bulkup', 'coil', 'curse', 'dragondance', 'honeclaws', 'howl', 'meditate', 'poweruppunch', 'screech', 'swordsdance',
@@ -44,10 +40,6 @@ const PHYSICAL_SETUP = [
 // Moves which boost Special Attack:
 const SPECIAL_SETUP = [
 	'calmmind', 'chargebeam', 'geomancy', 'nastyplot', 'quiverdance', 'tailglow',
-];
-// Moves that boost Attack AND Special Attack:
-const MIXED_SETUP = [
-	'celebrate', 'growth', 'happyhour', 'holdhands', 'shellsmash', 'workup',
 ];
 // Some moves that only boost Speed:
 const SPEED_SETUP = [

@@ -756,7 +756,7 @@ export class RandomBDSPTeams {
 			const lucarioCull = species.id === 'lucario' && !!counter.setupType;
 			return { cull: machampCullCondition || rockSlidePlusStatusPossible || otherRockMove || lucarioCull };
 		case 'shadowball':
-			return { cull: (!types.has('Ghost') && movePool.includes('focusblast'))};
+			return { cull: (!types.has('Ghost') && movePool.includes('focusblast')) };
 		case 'shadowclaw':
 			return { cull: types.has('Steel') && moves.has('shadowsneak') && counter.get('Physical') < 4 };
 		case 'dragonpulse': case 'spacialrend':
@@ -1721,10 +1721,8 @@ export class RandomBDSPTeams {
 		if (pokemon.length < this.maxTeamSize && pokemon.length < 12) { // large teams sometimes cannot be built
 			throw new Error(`Could not build a random team for ${this.format} (seed=${seed})`);
 		}
-
 		return pokemon;
 	}
-
 }
 
 export default RandomBDSPTeams;
