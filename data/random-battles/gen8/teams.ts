@@ -680,7 +680,7 @@ export class RandomGen8Teams extends RandomTeams {
 		if (moves.has('rest') && !moves.has('sleeptalk') && !['Natural Cure', 'Shed Skin'].includes(ability)) {
 			return 'Chesto Berry';
 		}
-		if (role === 'Staller' && moves.has('protect')) return 'Leftovers';
+		if (role === 'Staller' && PROTECT_MOVES.some(m => moves.has(m))) return 'Leftovers';
 	}
 
 	override getItem(
