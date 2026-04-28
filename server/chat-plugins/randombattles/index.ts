@@ -564,8 +564,8 @@ export const commands: Chat.ChatCommands = {
 		} else if (isBDSP) {
 			const setsToCheck = [species];
 			if (species.otherFormes) setsToCheck.push(...species.otherFormes.map(pkmn => dex.species.get(pkmn)));
-			for (let pokemon of setsToCheck) {
-				let data = getData(pokemon, format.name);
+			for (const pokemon of setsToCheck) {
+				const data = getData(pokemon, format.name);
 				if (!data) continue;
 				if (!data.moves || pokemon.isNonstandard === 'Future') continue;
 				const randomMoves = data.moves;
