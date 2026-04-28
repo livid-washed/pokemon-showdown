@@ -208,6 +208,7 @@ export class RandomGen8Teams extends RandomTeams {
 		}
 
 		const statusMoves = this.cachedStatusMoves;
+		const statusInflictingMoves = ["nuzzle", 'thunderwave', 'toxic', 'willowisp', 'yawn'];
 
 		// General incompatibilities
 		const incompatiblePairs = [
@@ -238,6 +239,7 @@ export class RandomGen8Teams extends RandomTeams {
 
 			// Status move incompatibilities
 			['taunt', 'encore'],
+			[statusInflictingMoves, 'toxicspikes'],
 
 			// Assorted hardcodes go here:
 			// Jirachi
@@ -254,8 +256,6 @@ export class RandomGen8Teams extends RandomTeams {
 			this.incompatibleMoves(moves, movePool, 'knockoff', 'suckerpunch');
 		}
 
-		const statusInflictingMoves = ["nuzzle", 'thunderwave', 'toxic', 'willowisp', 'yawn'];
-		this.incompatibleMoves(moves, movePool, statusInflictingMoves, 'toxicspikes');
 		if (role !== 'Staller') {
 			this.incompatibleMoves(moves, movePool, statusInflictingMoves, statusInflictingMoves);
 		}
