@@ -446,7 +446,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		}
 
 		// Enforce Preferred Type
-		if (!counter.get('preferred')) {
+		if (!counter.get(preferredType)) {
 			const stabMoves = [];
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
@@ -1035,7 +1035,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 
 			// These Pokemon are incompatible because the presence of one actively harms the other.
 			// Prevent Dry Skin + sun setting ability
-			['parasect', 'jynx', 'toxicroak', 'heliolisk', sunSetters],
+			[['parasect', 'jynx', 'toxicroak', 'heliolisk'], sunSetters],
 			// Prevent Shedinja + sand/hail setting ability
 			['shedinja', [...sandSetters, ...hailSetters]],
 		];

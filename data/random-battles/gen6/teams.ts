@@ -409,7 +409,7 @@ export class RandomGen6Teams extends RandomGen7Teams {
 		}
 
 		// Enforce Preferred Type
-		if (!counter.get('preferred')) {
+		if (!counter.get(preferredType)) {
 			const stabMoves = [];
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
