@@ -336,7 +336,10 @@ export class RandomTeams {
 	 */
 	private hasDirectCustomBanlistChanges() {
 		if (this.format.ruleTable?.has('+pokemontag:cap')) return false;
-		if (this.format.banlist.length || this.format.restricted.length || this.format.unbanlist.length) return true;
+		if (this.format.banlist.length) {
+			if (this.format.banlist[0] !== 'Nonexistent' || this.format.banlist.length > 1) return true;
+		}
+		if (this.format.restricted.length || this.format.unbanlist.length) return true;
 		if (!this.format.customRules) return false;
 		for (const rule of this.format.customRules) {
 			for (const banlistOperator of ['-', '+', '*']) {
