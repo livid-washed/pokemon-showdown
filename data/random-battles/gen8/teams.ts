@@ -288,7 +288,7 @@ export class RandomGen8Teams extends RandomTeams {
 			// Still need to ensure that multiple Hidden Powers are not added (if maxMoveCount is increased)
 			while (movePool.length) {
 				const moveid = this.sample(movePool);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 			return moves;
@@ -304,7 +304,7 @@ export class RandomGen8Teams extends RandomTeams {
 		// Add required move (e.g. Relic Song for Meloetta-P)
 		if (species.requiredMove) {
 			const move = this.dex.moves.get(species.requiredMove).id;
-			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead, false,
+			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead,
 				movePool, preferredType, role);
 		}
 
@@ -312,14 +312,14 @@ export class RandomGen8Teams extends RandomTeams {
 
 		// Enforce Facade if Guts is a possible ability
 		if (movePool.includes('facade') && abilities.includes('Guts')) {
-			counter = this.addMove('facade', moves, types, abilities, teamDetails, species, isLead, false,
+			counter = this.addMove('facade', moves, types, abilities, teamDetails, species, isLead,
 				movePool, preferredType, role);
 		}
 
 		// Enforce Aurora Veil, Blizzard, Night Shade, Seismic Toss, Spore, and Sticky Web
 		for (const moveid of ['auroraveil', 'blizzard', 'nightshade', 'seismictoss', 'spore', 'stickyweb']) {
 			if (movePool.includes(moveid)) {
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -327,11 +327,11 @@ export class RandomGen8Teams extends RandomTeams {
 		// Enforce hazard removal on Bulky Support if the team doesn't already have it
 		if (role === 'Bulky Support' && !teamDetails.defog && !teamDetails.rapidSpin) {
 			if (movePool.includes('rapidspin')) {
-				counter = this.addMove('rapidspin', moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove('rapidspin', moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 			if (movePool.includes('defog')) {
-				counter = this.addMove('defog', moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove('defog', moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -339,7 +339,7 @@ export class RandomGen8Teams extends RandomTeams {
 		// Enforce Knock Off on pure Normal- and Fighting-types
 		if (types.size === 1 && (types.has('Normal') || types.has('Fighting'))) {
 			if (movePool.includes('knockoff')) {
-				counter = this.addMove('knockoff', moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove('knockoff', moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -347,7 +347,7 @@ export class RandomGen8Teams extends RandomTeams {
 		// Enforce Body Press on sets with Acid Armor or Iron Defense
 		if (movePool.includes('acidarmor') || movePool.includes('irondefense')) {
 			if (movePool.includes('bodypress')) {
-				counter = this.addMove('bodypress', moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove('bodypress', moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -364,7 +364,7 @@ export class RandomGen8Teams extends RandomTeams {
 			}
 			if (priorityMoves.length) {
 				const moveid = this.sample(priorityMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -383,7 +383,7 @@ export class RandomGen8Teams extends RandomTeams {
 			while (runEnforcementChecker(type)) {
 				if (!stabMoves.length) break;
 				const moveid = this.sampleNoReplace(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -400,7 +400,7 @@ export class RandomGen8Teams extends RandomTeams {
 			}
 			if (stabMoves.length) {
 				const moveid = this.sample(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -417,7 +417,7 @@ export class RandomGen8Teams extends RandomTeams {
 			}
 			if (stabMoves.length) {
 				const moveid = this.sample(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -427,7 +427,7 @@ export class RandomGen8Teams extends RandomTeams {
 			const recoveryMoves = movePool.filter(moveid => RECOVERY_MOVES.includes(moveid));
 			if (recoveryMoves.length) {
 				const moveid = this.sample(recoveryMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -437,7 +437,7 @@ export class RandomGen8Teams extends RandomTeams {
 			const enforcedMoves = [...PROTECT_MOVES, 'toxic'];
 			for (const move of enforcedMoves) {
 				if (movePool.includes(move)) {
-					counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}
@@ -448,7 +448,7 @@ export class RandomGen8Teams extends RandomTeams {
 			const pivotMoves = movePool.filter(moveid => ['uturn', 'voltswitch'].includes(moveid));
 			if (pivotMoves.length) {
 				const moveid = this.sample(pivotMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -459,14 +459,14 @@ export class RandomGen8Teams extends RandomTeams {
 			const nonSpeedSetupMoves = movePool.filter(moveid => SETUP.includes(moveid) && !SPEED_SETUP.includes(moveid));
 			if (nonSpeedSetupMoves.length) {
 				const moveid = this.sample(nonSpeedSetupMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			} else {
 				// No non-Speed setup moves, so add any (Speed) setup move
 				const setupMoves = movePool.filter(moveid => SETUP.includes(moveid));
 				if (setupMoves.length) {
 					const moveid = this.sample(setupMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}
@@ -485,7 +485,7 @@ export class RandomGen8Teams extends RandomTeams {
 				}
 				if (fightingMoves.length) {
 					const moveid = this.sample(fightingMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}
@@ -500,7 +500,7 @@ export class RandomGen8Teams extends RandomTeams {
 				}
 				if (flyingMoves.length) {
 					const moveid = this.sample(flyingMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}
@@ -516,7 +516,7 @@ export class RandomGen8Teams extends RandomTeams {
 			}
 			if (attackingMoves.length) {
 				const moveid = this.sample(attackingMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 					movePool, preferredType, role);
 			}
 		}
@@ -537,7 +537,7 @@ export class RandomGen8Teams extends RandomTeams {
 				}
 				if (coverageMoves.length) {
 					const moveid = this.sample(coverageMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}
@@ -546,15 +546,15 @@ export class RandomGen8Teams extends RandomTeams {
 		// Choose remaining moves randomly from movepool and add them to moves list:
 		while (moves.size < this.maxMoveCount && movePool.length) {
 			const moveid = this.sample(movePool);
-			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, false,
+			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
 				movePool, preferredType, role);
 			for (const pair of MOVE_PAIRS) {
 				if (moveid === pair[0] && movePool.includes(pair[1])) {
-					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 				if (moveid === pair[1] && movePool.includes(pair[0])) {
-					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead, false,
+					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead,
 						movePool, preferredType, role);
 				}
 			}

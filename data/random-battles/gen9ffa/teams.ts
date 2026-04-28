@@ -287,78 +287,78 @@ export class RandomFFATeams extends RandomTeams {
 		const addPairedMove = (moveid: string) => {
 			for (const pair of MOVE_PAIRS) {
 				if (moveid === pair[0] && movePool.includes(pair[1])) {
-					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead, isDoubles,
-						movePool, teraType, role);
+					counter = this.addMove(pair[1], moves, types, abilities, teamDetails, species, isLead,
+						movePool, teraType, role, isDoubles);
 				}
 				if (moveid === pair[1] && movePool.includes(pair[0])) {
-					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead, isDoubles,
-						movePool, teraType, role);
+					counter = this.addMove(pair[0], moves, types, abilities, teamDetails, species, isLead,
+						movePool, teraType, role, isDoubles);
 				}
 			}
 		};
 
 		if (role === 'Tera Blast user') {
-			counter = this.addMove('terablast', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove('terablast', moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		if (role === 'Imprisoner') {
-			counter = this.addMove('imprison', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove('imprison', moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		// Add required move (e.g. Relic Song for Meloetta-P)
 		if (species.requiredMove) {
 			const move = this.dex.moves.get(species.requiredMove).id;
-			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove(move, moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		// Add other moves you really want to have, e.g. STAB, recovery, setup.
 
 		// Enforce Facade if Guts is a possible ability
 		if (movePool.includes('facade') && abilities.includes('Guts')) {
-			counter = this.addMove('facade', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove('facade', moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		// Enforce Sticky Web
 		if (movePool.includes('stickyweb')) {
-			counter = this.addMove('stickyweb', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove('stickyweb', moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		// Enforce Aurora Veil
 		if (movePool.includes('auroraveil')) {
-			counter = this.addMove('auroraveil', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove('auroraveil', moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 		}
 
 		// Enforce hazard removal on Bulky Support if the team doesn't already have it
 		if (role === 'Bulky Support' && !teamDetails.defog && !teamDetails.rapidSpin) {
 			if (movePool.includes('rapidspin')) {
-				counter = this.addMove('rapidspin', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove('rapidspin', moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 			if (movePool.includes('defog')) {
-				counter = this.addMove('defog', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove('defog', moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
 		// Enforce Knock Off on pure Normal- and Fighting-types
 		if (types.size === 1 && (types.has('Normal') || types.has('Fighting'))) {
 			if (movePool.includes('knockoff')) {
-				counter = this.addMove('knockoff', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove('knockoff', moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
 		// Enforce Rock Slide on Wallbreaker Rock types
 		if (types.has('Rock') && role === 'Wallbreaker') {
 			if (movePool.includes('rockslide')) {
-				counter = this.addMove('rockslide', moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove('rockslide', moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -377,8 +377,8 @@ export class RandomFFATeams extends RandomTeams {
 			}
 			if (priorityMoves.length) {
 				const moveid = this.sample(priorityMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -399,8 +399,8 @@ export class RandomFFATeams extends RandomTeams {
 			while (runEnforcementChecker(type)) {
 				if (!stabMoves.length) break;
 				const moveid = this.sampleNoReplace(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 				// Enforce Thunderbolt on Regice
 				addPairedMove(moveid);
 			}
@@ -421,8 +421,8 @@ export class RandomFFATeams extends RandomTeams {
 			if (nonSpreadSTAB.length) stabMoves = nonSpreadSTAB;
 			if (stabMoves.length) {
 				const moveid = this.sample(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 				// Enforce Ice Beam on Tera Electric Porygon-Z
 				addPairedMove(moveid);
 			}
@@ -440,8 +440,8 @@ export class RandomFFATeams extends RandomTeams {
 			}
 			if (stabMoves.length) {
 				const moveid = this.sample(stabMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -450,8 +450,8 @@ export class RandomFFATeams extends RandomTeams {
 			const pivotMoves = movePool.filter(moveid => ['uturn', 'voltswitch'].includes(moveid));
 			if (pivotMoves.length) {
 				const moveid = this.sample(pivotMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -460,8 +460,8 @@ export class RandomFFATeams extends RandomTeams {
 			const recoveryMoves = movePool.filter(moveid => RECOVERY_MOVES.includes(moveid));
 			if (recoveryMoves.length) {
 				const moveid = this.sample(recoveryMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -471,15 +471,15 @@ export class RandomFFATeams extends RandomTeams {
 			const nonSpeedSetupMoves = movePool.filter(moveid => SETUP.includes(moveid) && !SPEED_SETUP.includes(moveid));
 			if (nonSpeedSetupMoves.length) {
 				const moveid = this.sample(nonSpeedSetupMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			} else {
 				// No non-Speed setup moves, so add any (Speed) setup move
 				const setupMoves = movePool.filter(moveid => SETUP.includes(moveid));
 				if (setupMoves.length) {
 					const moveid = this.sample(setupMoves);
-					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-						movePool, teraType, role);
+					counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+						movePool, teraType, role, isDoubles);
 				}
 			}
 		}
@@ -489,8 +489,8 @@ export class RandomFFATeams extends RandomTeams {
 			const protectMoves = movePool.filter(moveid => PROTECT_MOVES.includes(moveid));
 			if (protectMoves.length) {
 				const moveid = this.sample(protectMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 				// Enforce Wish and Leech Seed with Protect/Spiky Shield
 				addPairedMove(moveid);
 			}
@@ -506,8 +506,8 @@ export class RandomFFATeams extends RandomTeams {
 			}
 			if (attackingMoves.length) {
 				const moveid = this.sample(attackingMoves);
-				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-					movePool, teraType, role);
+				counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+					movePool, teraType, role, isDoubles);
 			}
 		}
 
@@ -523,8 +523,8 @@ export class RandomFFATeams extends RandomTeams {
 				break;
 			}
 			const moveid = this.sample(movePool);
-			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead, isDoubles,
-				movePool, teraType, role);
+			counter = this.addMove(moveid, moves, types, abilities, teamDetails, species, isLead,
+				movePool, teraType, role, isDoubles);
 			addPairedMove(moveid);
 		}
 		return moves;
