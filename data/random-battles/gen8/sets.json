@@ -4781,7 +4781,7 @@
                 "abilities": ["Misty Surge"]
             },
             {
-                "role": "Bulky Setup",
+                "role": "Bulky Attacker",
                 "movepool": ["Calm Mind", "Draining Kiss", "Hydro Pump", "Moonblast", "Surf"],
                 "abilities": ["Misty Surge"]
             },

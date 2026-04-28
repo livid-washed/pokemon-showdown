@@ -49,7 +49,7 @@ const HAZARDS = [
 ];
 // Protect and its variants
 const PROTECT_MOVES = [
-	'banefulbunker', 'protect/', 'spikyshield',
+	'banefulbunker', 'protect', 'spikyshield',
 ];
 // Moves that switch the user out
 const PIVOT_MOVES = [
