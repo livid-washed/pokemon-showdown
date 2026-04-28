@@ -237,7 +237,6 @@ export class RandomGen8Teams extends RandomTeams {
 			['dragonclaw', 'outrage'],
 
 			// Status move incompatibilities
-			['toxic', 'toxicspikes'],
 			['taunt', 'encore'],
 
 			// Assorted hardcodes go here:
