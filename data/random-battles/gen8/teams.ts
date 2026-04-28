@@ -748,6 +748,7 @@ export class RandomGen8Teams extends RandomTeams {
 
 		// Low Priority
 		if (moves.has('dragondance') && role === 'Bulky Setup') return 'Weakness Policy';
+		if (moves.has('outrage') && counter.get('setup')) return 'Lum Berry';
 		if (
 			(ability === 'Rough Skin') || (
 				ability === 'Regenerator' && (role === 'Bulky Support' || role === 'Bulky Attacker') &&
@@ -758,7 +759,6 @@ export class RandomGen8Teams extends RandomTeams {
 				(species.baseStats.hp + species.baseStats.def) > 200 && this.randomChance(1, 2)
 			)
 		) return 'Rocky Helmet';
-		if (moves.has('outrage') && counter.get('setup')) return 'Lum Berry';
 		if (['kingsshield', 'protect', 'spikyshield'].some(m => moves.has(m))) return 'Leftovers';
 		if (['Bulky Attacker', 'Bulky Support', 'Bulky Setup'].some(m => role === (m))) return 'Leftovers';
 		if (
