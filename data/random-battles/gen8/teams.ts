@@ -735,7 +735,9 @@ export class RandomGen8Teams extends RandomTeams {
 			moves.has('stickyweb') && isLead &&
 			(species.baseStats.hp + species.baseStats.def + species.baseStats.spd) <= 235
 		) return 'Focus Sash';
-		if (this.dex.getEffectiveness('Rock', species) >= 1 || species.id === 'sawk' && ability === 'Sturdy') return 'Heavy-Duty Boots';
+		if (
+			this.dex.getEffectiveness('Rock', species) >= 1 || species.id === 'sawk' && ability === 'Sturdy'
+		) return 'Heavy-Duty Boots';
 		if (
 			(moves.has('teleport') || (
 				role === 'Fast Support' &&
@@ -1008,9 +1010,9 @@ export class RandomGen8Teams extends RandomTeams {
 			if (species.name === 'Zoroark' && pokemon.length >= (this.maxTeamSize - 1)) continue;
 
 			// If the team already has a Dynamax User, don't generate another one
-			if (this.randomSets[species.id]["sets"].length === 1 && this.randomSets[species.id]["sets"][0]["role"] === 'Dynamax User') {
-				continue;
-			}
+			if (
+				this.randomSets[species.id]["sets"].length === 1 && this.randomSets[species.id]["sets"][0]["role"] === 'Dynamax User'
+			) continue;
 
 			const types = species.types;
 			const typeCombo = types.slice().sort().join();
