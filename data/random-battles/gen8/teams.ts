@@ -238,7 +238,6 @@ export class RandomGen8Teams extends RandomTeams {
 
 			// Status move incompatibilities
 			['toxic', 'toxicspikes'],
-			['defog', ['leechseed', 'substitute']],
 			['taunt', 'encore'],
 
 			// Assorted hardcodes go here:
