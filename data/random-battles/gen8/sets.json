@@ -2995,8 +2995,7 @@
             {
                 "role": "Wallbreaker",
                 "movepool": ["Air Slash", "Energy Ball", "Heat Wave", "Ice Beam", "Psychic", "Psyshock"],
-                "abilities": ["Tinted Lens"],
-                "preferredTypes": ["Psychic"]
+                "abilities": ["Tinted Lens"]
             }
         ]
     },

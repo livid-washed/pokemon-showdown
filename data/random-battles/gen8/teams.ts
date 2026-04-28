@@ -105,7 +105,7 @@ export class RandomGen8Teams extends RandomTeams {
 			Poison: (movePool, moves, abilities, types, counter) => !counter.get('Poison'),
 			Psychic: (movePool, moves, abilities, types, counter) => (
 				!counter.get('Psychic') && (
-					movePool.includes('calmmind') || ['Bug', 'Electric', 'Fairy', 'Fighting', 'Poison'].some(t => types.has(t))
+					movePool.includes('calmmind') || ['Bug', 'Electric', 'Fairy', 'Fighting', 'Flying', 'Poison'].some(t => types.has(t))
 				)
 			),
 			Rock: (movePool, moves, abilities, types, counter, species) => (!counter.get('Rock') && species.baseStats.atk >= 80),
