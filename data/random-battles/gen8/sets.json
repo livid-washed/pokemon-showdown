@@ -5605,7 +5605,7 @@
         "level": 78,
         "sets": [
             {
-                "role": "Bulky Attacker",
+                "role": "Fast Attacker",
                 "movepool": ["Crunch", "Fishious Rend", "Low Kick", "Outrage", "Psychic Fangs"],
                 "abilities": ["Strong Jaw"]
             }
