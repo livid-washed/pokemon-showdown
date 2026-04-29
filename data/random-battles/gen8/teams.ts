@@ -1009,6 +1009,7 @@ export class RandomGen8Teams extends RandomTeams {
 
 			// If the team already has a Dynamax User, don't generate another one
 			if (
+				teamDetails.dynamaxUser &&
 				this.randomSets[species.id]["sets"].length === 1 && this.randomSets[species.id]["sets"][0]["role"] === 'Dynamax User'
 			) continue;
 

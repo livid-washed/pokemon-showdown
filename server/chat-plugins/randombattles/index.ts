@@ -894,7 +894,7 @@ export const commands: Chat.ChatCommands = {
 
 	genteam: 'generateteam',
 	generateteam(target, room, user) {
-		if (!Rooms.get('randombattles')?.auth.has(user.id)) this.checkCan('lock');
+		// if (!Rooms.get('randombattles')?.auth.has(user.id)) this.checkCan('lock');
 		this.runBroadcast(true);
 
 		if (!target) return this.parse('/help generateteam');
