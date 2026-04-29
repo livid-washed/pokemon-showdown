@@ -687,6 +687,11 @@
                 "role": "Fast Attacker",
                 "movepool": ["Focus Blast", "Ice Beam", "Lovely Kiss", "Nasty Plot", "Psyshock", "Trick"],
                 "abilities": ["Dry Skin"]
+            },
+            {
+                "role": "Wallbreaker",
+                "movepool": ["Focus Blast", "Ice Beam", "Lovely Kiss", "Nasty Plot", "Psyshock", "Trick"],
+                "abilities": ["Dry Skin"]
             }
         ]
     },
