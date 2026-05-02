@@ -204,7 +204,7 @@ export class RandomTeams {
 
 		this.moveEnforcementCheckers = {
 			Bug: (movePool, moves, abilities, types, counter) => (
-				movePool.includes('megahorn') || movePool.includes('xscissor') ||
+				['megahorn', 'pinmissile', 'xscissor'].some(m => movePool.includes(m)) ||
 				(!counter.get('Bug') && (types.includes('Electric') || types.includes('Psychic')))
 			),
 			Dark: (
