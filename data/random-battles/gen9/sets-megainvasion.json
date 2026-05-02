@@ -211,7 +211,7 @@
         "sets": [
             {
                 "role": "Setup Sweeper",
-                "movepool": ["Flare Blitz", "High Jump Kick", "Knock Off", "Protect", "Stone Edge", "Swords Dance"],
+                "movepool": ["Close Combat", "Flare Blitz", "Knock Off", "Protect", "Stone Edge", "Swords Dance"],
                 "abilities": ["Speed Boost"],
                 "teraTypes": ["Stellar"]
             }
@@ -256,7 +256,7 @@
             {
                 "role": "Fast Attacker",
                 "movepool": ["Close Combat", "Fake Out", "Ice Punch", "Poison Jab", "Thief", "Trailblaze", "Zen Headbutt"],
-                "abilities": ["Huge Power"],
+                "abilities": ["Pure Power"],
                 "teraTypes": ["Stellar"]
             }
         ]
@@ -450,7 +450,7 @@
         "sets": [
             {
                 "role": "Fast Attacker",
-                "movepool": ["Calm Mind", "Diamond Storm", "Earth Power", "Moonblast", "Mystical Fire", "Stealth Rock"],
+                "movepool": ["Calm Mind", "Diamond Storm", "Earth Power", "Moonblast", "Stealth Rock"],
                 "abilities": ["Clear Body"],
                 "teraTypes": ["Ground"]
             }
