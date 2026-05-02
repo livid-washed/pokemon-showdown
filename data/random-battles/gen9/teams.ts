@@ -130,6 +130,7 @@ const MOVE_PAIRS = [
 	['protect', 'wish'],
 	['leechseed', 'protect'],
 	['leechseed', 'substitute'],
+	['perishsong', 'protect'],
 ];
 
 /** Pokemon who always want priority STAB, and are fine with it as its only STAB move of that type */
