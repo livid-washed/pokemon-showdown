@@ -222,9 +222,15 @@
         "sets": [
             {
                 "role": "Setup Sweeper",
-                "movepool": ["Earthquake", "Ice Punch", "Liquidation", "Poison Jab", "Rain Dance"],
+                "movepool": ["Earthquake", "Ice Punch", "Liquidation", "Rain Dance"],
                 "abilities": ["Damp"],
-                "teraTypes": ["Water"]
+                "teraTypes": ["Stellar"]
+            },
+            {
+                "role": "Bulky Setup",
+                "movepool": ["Earthquake", "Liquidation", "Poison Jab", "Rain Dance"],
+                "abilities": ["Damp"],
+                "teraTypes": ["Stellar"]
             }
         ]
     },

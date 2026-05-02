@@ -556,6 +556,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		desc: `Each Pok&eacute;mon that could mega evolve in gen 7 using a mega stone can do so here, too. Terastallizing is banned for all Pok&eacute;mon.`,
 		team: 'randomMegaInvasion',
 		ruleset: ['[Gen 9] Random Battle', 'Terastal Clause'],
+		onBegin() {
+			this.add(`raw|<div class="broadcast-blue"><b>Pok&eacute;mon that could undergo mega evolution or primal reversion in Gen 7 can do so here, too. Their sets are based on Gen 9 movepools, and can be viewed using the /randbats command.`);
+		},
 	},
 	{
 		name: "[Gen 9] Inheritance",
