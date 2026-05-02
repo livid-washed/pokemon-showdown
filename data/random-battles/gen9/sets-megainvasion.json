@@ -306,12 +306,14 @@
             {
                 "role": "Fast Attacker",
                 "movepool": ["Body Slam", "Earthquake", "Freeze-Dry", "Ice Shard"],
-                "abilities": ["Inner Focus"]
+                "abilities": ["Inner Focus"],
+                "teraTypes": ["Stellar"]
             },
             {
                 "role": "Fast Support",
                 "movepool": ["Body Slam", "Earthquake", "Freeze-Dry", "Spikes"],
-                "abilities": ["Inner Focus"]
+                "abilities": ["Inner Focus"],
+                "teraTypes": ["Stellar"]
             }
         ]
     },
