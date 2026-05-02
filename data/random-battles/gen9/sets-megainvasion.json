@@ -305,9 +305,13 @@
         "sets": [
             {
                 "role": "Fast Attacker",
-                "movepool": ["Body Slam", "Earthquake", "Freeze-Dry", "Ice Shard", "Spikes"],
-                "abilities": ["Inner Focus"],
-                "teraTypes": ["Ground"]
+                "movepool": ["Body Slam", "Earthquake", "Freeze-Dry", "Ice Shard"],
+                "abilities": ["Inner Focus"]
+            },
+            {
+                "role": "Fast Support",
+                "movepool": ["Body Slam", "Earthquake", "Freeze-Dry", "Spikes"],
+                "abilities": ["Inner Focus"]
             }
         ]
     },
